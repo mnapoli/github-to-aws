@@ -1,4 +1,4 @@
-# Authorize GitHub Actions to deploy to AWS
+# Set up GitHub Actions to deploy to AWS
 
 To deploy to AWS from GitHub Actions (using _any_ tool), you need to provide AWS credentials.
 

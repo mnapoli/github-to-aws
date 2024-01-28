@@ -1,6 +1,5 @@
 {
   "name": "github-to-aws",
-  "version": "1.0.0",
   "description": "Set up GitHub Actions to deploy to AWS",
   "main": "index.js",
   "type": "module",
