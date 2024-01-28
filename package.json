@@ -1,0 +1,15 @@
+{
+  "name": "github-to-aws",
+  "version": "1.0.0",
+  "description": "Set up GitHub Actions to deploy to AWS",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-cloudformation": "^3.501.0",
+    "@aws-sdk/client-sts": "^3.501.0",
+    "minimist": "^1.2.8",
+    "ora": "^8.0.1",
+    "yesno": "^0.4.0"
+  }
+}

@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Allows GitHub Actions to deploy to AWS
+
+Parameters:
+    FullRepoName:
+        Type: String
+
+Resources:
+    GitHubOidc:
+        Type: AWS::IAM::OIDCProvider
+        Properties:
+            Url: https://token.actions.githubusercontent.com
+            ThumbprintList:
+                - '6938fd4d98bab03faadb97b34396831e3780aea1'
+                - '1c58a3a8518e8759bf075b76b750d4f2df264fcd'
+            ClientIdList:
+                - sts.amazonaws.com
+
+    Role:
+        Type: AWS::IAM::Role
+        Properties:
+            RoleName: !Sub '${AWS::StackName}'
+            Description: Allows GitHub Actions to deploy to AWS
+            AssumeRolePolicyDocument:
+                Statement:
+                    - Effect: Allow
+                      Action: sts:AssumeRoleWithWebIdentity
+                      Principal:
+                          Federated: !Ref GitHubOidc
+                      Condition:
+                          StringLike:
+                              token.actions.githubusercontent.com:sub: !Sub 'repo:${FullRepoName}:*'
+            ManagedPolicyArns:
+                - arn:aws:iam::aws:policy/AdministratorAccess
+
+Outputs:
+    Role:
+        Value: !GetAtt Role.Arn
