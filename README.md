@@ -23,6 +23,9 @@ The CLI will create an IAM role in your AWS account that GitHub Actions will be 
 
 Note that **only** GitHub Actions from the specified repository will be able to assume this role.
 
+> [!Note]
+> GitHub Actions will be granted the AdministratorAccess role (because it's nearly impossible to design tight permissions that fit everyone's use case). Feel free to fork and adjust the permissions to your liking (or even better, send a pull request to make them configurable).
+
 ## Usage in GitHub Actions
 
 Once the CLI has created the role, it will show you the role ARN to use.
